@@ -93,4 +93,33 @@ public class SnailShellPatternTest {
     int[] expected = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
     assertArrayEquals(result, expected);
   }
+
+  /**
+   * Tests the snail shell pattern generation for a 8x8 matrix.
+   *
+   * @throws InterruptedException if the thread was interrupted during the test.
+   * @throws ExecutionException if an execution exception occurs during the test.
+   * @throws TimeoutException if the test times out.
+   */
+  @Test
+  public void snailShellPattern8x8MatrixTest()
+          throws InterruptedException, ExecutionException, TimeoutException {
+    int[][] matrix = {
+            { 1, 2, 3, 4, 5, 6, 7, 8 },
+            { 28, 29, 30, 31, 32, 33, 34, 9 },
+            { 27, 48, 49, 50, 51, 52, 35, 10 },
+            { 26, 47, 60, 61, 62, 53, 36, 11 },
+            { 25, 46, 59, 64, 63, 54, 37, 12 },
+            { 24, 45, 58, 57, 56, 55, 38, 13 },
+            { 23, 44, 43, 42, 41, 40, 39, 14 },
+            { 22, 21, 20, 19, 18, 17, 16, 15 }
+    };
+    Future<int[]> count = new SnailShellPattern().getSnailShell(matrix);
+    int[] actual = count.get(10, TimeUnit.SECONDS);
+    int[] expected = new int[64];
+    for (int i = 0; i < expected.length; i++) {
+      expected[i] = i + 1;
+    }
+    assertArrayEquals(expected, actual);
+  }
 }
