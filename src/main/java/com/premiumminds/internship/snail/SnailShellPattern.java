@@ -56,5 +56,4 @@ class SnailShellPattern implements ISnailShellPattern {
     }
     return snailShellPattern;
   }
-
 }
