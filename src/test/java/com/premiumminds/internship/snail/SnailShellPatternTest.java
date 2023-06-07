@@ -26,6 +26,24 @@ public class SnailShellPatternTest {
   }
 
   /**
+   * Tests the snail shell pattern generation for an empty matrix.
+   * By the rules, an empty matrix should be represented by [[]].
+   *
+   * @throws InterruptedException if the thread was interrupted during the test.
+   * @throws ExecutionException if an execution exception occurs during the test.
+   * @throws TimeoutException if the test times out.
+   */
+  @Test
+  public void snailShellPatternEmptyMatrixTest()
+          throws InterruptedException, ExecutionException, TimeoutException {
+    int[][] matrix = {{}};
+    Future<int[]> count = new SnailShellPattern().getSnailShell(matrix);
+    int[] actual = count.get(10, TimeUnit.SECONDS);
+    int[] expected = new int[0];
+    assertArrayEquals(expected, actual);
+  }
+
+  /**
    * Tests the snail shell pattern generation for a 3x3 matrix.
    *
    * @throws InterruptedException if the thread was interrupted during the test.
@@ -34,7 +52,7 @@ public class SnailShellPatternTest {
    */
   @Test
   public void snailShellPattern3x3MatrixTest()
-      throws InterruptedException, ExecutionException, TimeoutException {
+          throws InterruptedException, ExecutionException, TimeoutException {
     int[][] matrix = { { 1, 2, 3 }, { 8, 9, 4 }, { 7, 6, 5 } };
     Future<int[]> count = new SnailShellPattern().getSnailShell(matrix);
     int[] result = count.get(10, TimeUnit.SECONDS);
