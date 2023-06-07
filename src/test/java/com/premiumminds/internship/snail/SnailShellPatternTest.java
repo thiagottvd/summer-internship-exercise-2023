@@ -1,14 +1,15 @@
 package com.premiumminds.internship.snail;
 
-import static org.junit.Assert.assertArrayEquals;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
+
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.JUnit4;
+import static org.junit.Assert.assertArrayEquals;
 
 /**
  * Created by aamado on 05-05-2023.
@@ -117,6 +118,38 @@ public class SnailShellPatternTest {
     Future<int[]> count = new SnailShellPattern().getSnailShell(matrix);
     int[] actual = count.get(10, TimeUnit.SECONDS);
     int[] expected = new int[64];
+    for (int i = 0; i < expected.length; i++) {
+      expected[i] = i + 1;
+    }
+    assertArrayEquals(expected, actual);
+  }
+
+  /**
+   * Tests the snail shell pattern generation for a 11x11 matrix.
+   *
+   * @throws InterruptedException if the thread was interrupted during the test.
+   * @throws ExecutionException if an execution exception occurs during the test.
+   * @throws TimeoutException if the test times out.
+   */
+  @Test
+  public void snailShellPattern11x11MatrixTest()
+          throws InterruptedException, ExecutionException, TimeoutException {
+    int[][] matrix = {
+            { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 },
+            { 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 12 },
+            { 39, 72, 73, 74, 75, 76, 77, 78, 79, 50, 13 },
+            { 38, 71, 96, 97, 98, 99, 100, 101, 80, 51, 14 },
+            { 37, 70, 95, 112, 113, 114, 115, 102, 81, 52, 15 },
+            { 36, 69, 94, 111, 120, 121, 116, 103, 82, 53, 16 },
+            { 35, 68, 93, 110, 119, 118, 117, 104, 83, 54, 17 },
+            { 34, 67, 92, 109, 108, 107, 106, 105, 84, 55, 18 },
+            { 33, 66, 91, 90, 89, 88, 87, 86, 85, 56, 19 },
+            { 32, 65, 64, 63, 62, 61, 60, 59, 58, 57, 20 },
+            { 31, 30, 29, 28, 27, 26, 25, 24, 23, 22, 21 }
+    };
+    Future<int[]> count = new SnailShellPattern().getSnailShell(matrix);
+    int[] actual = count.get(10, TimeUnit.SECONDS);
+    int[] expected = new int[121];
     for (int i = 0; i < expected.length; i++) {
       expected[i] = i + 1;
     }
