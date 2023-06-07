@@ -61,6 +61,23 @@ public class SnailShellPatternTest {
   }
 
   /**
+   * Tests the snail shell pattern generation for a 2x2 matrix.
+   *
+   * @throws InterruptedException if the thread was interrupted during the test.
+   * @throws ExecutionException if an execution exception occurs during the test.
+   * @throws TimeoutException if the test times out.
+   */
+  @Test
+  public void snailShellPattern2x2MatrixTest()
+          throws InterruptedException, ExecutionException, TimeoutException {
+    int[][] matrix = { { 1, 2 }, { 4, 3 } };
+    Future<int[]> count = new SnailShellPattern().getSnailShell(matrix);
+    int[] actual = count.get(10, TimeUnit.SECONDS);
+    int[] expected = { 1, 2, 3, 4 };
+    assertArrayEquals(expected, actual);
+  }
+
+  /**
    * Tests the snail shell pattern generation for a 3x3 matrix.
    *
    * @throws InterruptedException if the thread was interrupted during the test.
